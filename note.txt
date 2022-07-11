@@ -1,0 +1,81 @@
+npm i -g @nestjs/cli
+
+nvm install 18.5.0
+
+nvm use 18.5.0 
+
+❯ node --version
+v18.5.0
+
+nest new 
+
+-> "nest_rest_api"
+
+-> "yarn"
+
+cd nest_rest_api
+
+yarn start | yarn start:dev
+
+
+** Generate Controller **
+
+nest generate controller
+
+^ app.module.ts automatically updates by importing the newly created controller
+
+** Use the dry-run flag to simulate the output of created CLI objects **
+
+❯ nest generate controller module/abc --dry-run
+CREATE src/module/abc/abc.controller.spec.ts (471 bytes)
+CREATE src/module/abc/abc.controller.ts (95 bytes)
+UPDATE src/app.module.ts (410 bytes)
+Dry run enabled. No files written to disk.
+
+
+** Generate Service **
+
+nest generate service
+
+^ app.module.ts automatically updates by importing the newly created service
+
+
+** Generate Module **
+
+nest generate module
+
+^ app.module.ts automatically updates by importing the newly created module
+
+
+
+/**
+ * Generate a DTO class with the Nest CLI 
+ * --no-spec (no test file needed for DTO's)
+ */
+nest generate class coffees/dto/create-coffee.dto --no-spec
+
+nest generate class coffees/dto/update-coffee.dto --no-spec
+
+
+
+The ValidationPipe provides a convenient way of enforcing validation rules for all incoming client payloads. You can specify these rules by using simple annotations in your DTO!
+
+// Apply the ValidationPipe globally in our main.ts file
+app.useGlobalPipes(new ValidationPipe());
+
+
+// Install needed dependencies
+yarn add class-validator class-transformer 
+
+
+// Implement validation rules in our CreateCoffeeDto
+import { IsString } from 'class-validator';
+
+
+// Install @nestjs/mapped-types 
+yarn add @nestjs/mapped-types
+
+
+// Configure validation
+main.ts
+
