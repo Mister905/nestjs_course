@@ -22,11 +22,15 @@ yarn start | yarn start:dev
 
 nest generate controller
 
+OR
+
+n g controller
+
 ^ app.module.ts automatically updates by importing the newly created controller
 
 ** Use the dry-run flag to simulate the output of created CLI objects **
 
-❯ nest generate controller module/abc --dry-run
+❯ n g controller module/abc --dry-run
 CREATE src/module/abc/abc.controller.spec.ts (471 bytes)
 CREATE src/module/abc/abc.controller.ts (95 bytes)
 UPDATE src/app.module.ts (410 bytes)
@@ -35,14 +39,14 @@ Dry run enabled. No files written to disk.
 
 ** Generate Service **
 
-nest generate service
+n g service
 
 ^ app.module.ts automatically updates by importing the newly created service
 
 
 ** Generate Module **
 
-nest generate module
+n g module
 
 ^ app.module.ts automatically updates by importing the newly created module
 
@@ -52,9 +56,9 @@ nest generate module
  * Generate a DTO class with the Nest CLI 
  * --no-spec (no test file needed for DTO's)
  */
-nest generate class coffees/dto/create-coffee.dto --no-spec
+n g class coffees/dto/create-coffee.dto --no-spec
 
-nest generate class coffees/dto/update-coffee.dto --no-spec
+n g class coffees/dto/update-coffee.dto --no-spec
 
 
 
@@ -101,8 +105,7 @@ yarn add @nestjs/typeorm typeorm pg
 
 ** Create a Relation between 2 Entities **
 
-nest g class coffees/entities/flavour.entity --no-spec
-
+n g class coffees/entities/flavour.entity --no-spec
 
 
 ** Adding Pagination **
@@ -110,4 +113,46 @@ nest g class coffees/entities/flavour.entity --no-spec
 nest g class common/dto/pagination-query.dto --no-spec
 
 
-Test
+** Use Transactions **
+
+nest g class events/entities/event.entity --no-spec
+
+
+** Setting up Migrations **
+
+typeorm-cli.config.ts
+
+** Creating a TypeOrm Migration **
+
+npx typeorm migration:create src/migrations/CoffeeRefactor
+
+^ CoffeeRefactor being the NAME we are giving "this" migration
+
+^ src/migrations/1657823495013-CoffeeRefactor.ts
+
+
+
+/* RUNNING MIGRATIONS */
+
+/**
+ * 💡 Remember 💡
+ * You must BUILD your Nest project (so that everything is output to the `/dist/` folder,
+ * before a Migration can run, it needs compilated files.
+ */
+ 
+// Compile project first 
+yarn build
+
+// Run migration(s) 
+npx typeorm migration:run -d dist/typeorm-cli.config
+
+// REVERT migration(s)
+npx typeorm migration:revert -d dist/typeorm-cli.config
+
+// Let TypeOrm generate migrations (for you)
+npx typeorm migration:generate src/migrations/CoffeeSchemaUpdate -d dist/typeorm-cli.config
+
+
+
+
+npx typeorm migration:create src/migrations/CoffeeSchemaUpdate
