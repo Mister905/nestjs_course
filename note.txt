@@ -79,3 +79,35 @@ yarn add @nestjs/mapped-types
 // Configure validation
 main.ts
 
+
+
+** PostgresSQL Config **
+
+nest_rest_api/docker-compose.yml
+
+# Start containers in detached / background mode
+
+docker-compose up -d
+
+# Stop containers
+
+docker-compose down
+
+
+** Install neccessary TypeORM dependencies **
+
+yarn add @nestjs/typeorm typeorm pg
+
+
+** Create a Relation between 2 Entities **
+
+nest g class coffees/entities/flavour.entity --no-spec
+
+
+
+** Adding Pagination **
+
+nest g class common/dto/pagination-query.dto --no-spec
+
+
+Test
