@@ -156,3 +156,47 @@ npx typeorm migration:generate src/migrations/CoffeeSchemaUpdate -d dist/typeorm
 
 
 npx typeorm migration:create src/migrations/CoffeeSchemaUpdate
+
+
+
+
+** Config Module **
+
+yarn add @nestjs/config
+
+nest_rest_api/.env
+
+// Make sure .env file is in .gitignore file and NOT tracked by git */
+# Env
+*.env
+
+
+
+
+** Swagger **
+
+yarn add @nestjs/swagger swagger-ui-express
+
+nest_rest_api/src/main.ts
+
+http://localhost:3000/api
+
+/**
+ * Add the @nestjs/swagger plugin to our application
+ * nest-cli.json
+ */
+
+nest_rest_api/nest-cli.json
+
+"compilerOptions": {
+  "deleteOutDir": true,
+  "plugins": ["@nestjs/swagger/plugin"] // 👈
+}
+
+
+nest_rest_api/src/coffees/dto/update-coffee.dto.ts
+
+import { PartialType } from '@nestjs/swagger';
+
+
+
