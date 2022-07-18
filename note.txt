@@ -79,3 +79,24 @@ yarn add @nestjs/mapped-types
 // Configure validation
 main.ts
 
+
+** MongoDB with Mongoose **
+
+touch docker-compose.yml
+
+yarn add mongoose @nestjs/mongoose
+
+nest_rest_api/src/app.module.ts
+
+yarn build
+
+yarn start:dev
+
+
+
+** Install mongoose dependencies **
+
+yarn add mongoose @nestjs/mongoose
+
+** Generate PaginationQueryDto (without test file) **
+nest g class common/dto/pagination-query.dto --no-spec
